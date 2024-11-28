@@ -4,7 +4,6 @@ import carsharing.Company;
 import carsharing.CompanyDAO;
 import org.h2.jdbcx.JdbcDataSource;
 import javax.sql.DataSource;
-import javax.swing.tree.RowMapper;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,15 +20,6 @@ public class DBClient {
         JdbcDataSource dataSource = new JdbcDataSource();
         dataSource.setUrl(CONNECTION_URL);
         this.dataSource = dataSource;
-    }
-
-    public Connection getConnection() {
-        try {
-            return dataSource.getConnection();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 
     public void run(String str) {

@@ -12,21 +12,20 @@ public class DbCompanyDAO implements CompanyDAO {
     private static final String INSERT_COMPANY = "INSERT INTO COMPANY VALUES (%d, '%s');";
     private static final String LIST_ALL_COMPANIES = "SELECT * FROM COMPANY;";
 
-    private final DBClient dbClient;
+    private static final DBClient dbClient = new DBClient();
 
     public DbCompanyDAO() {
-        dbClient = new DBClient();
         dbClient.run(CREATE_TABLE);
         System.out.println("Table created");
     }
 
-    @Override
     public void add(Company company) {
         dbClient.run(String.format(INSERT_COMPANY, company.id(), company.name()));
     }
 
-    @Override
     public List<Company> findAll() {
-        return dbClient.selectForCompanyList(LIST_ALL_COMPANIES);
+        List<Company> companies = dbClient.selectForCompanyList(LIST_ALL_COMPANIES);
+        companies.forEach(company -> System.out.println(company.id() + ". " + company.name()));
+        return companies;
     }
 }
