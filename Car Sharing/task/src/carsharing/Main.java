@@ -1,11 +1,13 @@
 package carsharing;
 
-import carsharing.util.DataBase;
+import carsharing.menus.MainMenu;
 
 public class Main {
 
     public static void main(String[] args) {
-        // write your code here
-        DataBase.createDatabase(args);
+        MainMenu menu = new MainMenu();
+        while (true) {
+            menu.show();
+        }
     }
 }
