@@ -1,5 +1,7 @@
 package carsharing;
 
+import carsharing.util.Keyboard;
+
 import java.util.List;
 
 public class CompanyService {
@@ -18,5 +20,14 @@ public class CompanyService {
             companies.forEach(company -> System.out.println(company.id() + ". " + company.name()));
             System.out.println();
         }
+    }
+
+    public void createCompany() {
+        System.out.println("Enter the company name:");
+        String name = Keyboard.getNextLine();
+        Company company = new Company(0, name);
+        DbCompanyDAO dbCompanyDAO = new DbCompanyDAO();
+        dbCompanyDAO.add(company);
+        System.out.println("The company was created!");
     }
 }
