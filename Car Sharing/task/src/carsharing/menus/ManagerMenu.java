@@ -1,6 +1,7 @@
 package carsharing.menus;
 
 import carsharing.Company;
+import carsharing.CompanyService;
 import carsharing.DbCompanyDAO;
 import carsharing.util.Keyboard;
 
@@ -8,10 +9,11 @@ import java.util.List;
 
 public class ManagerMenu {
 
-    private final DbCompanyDAO companyDAO;
+    private final CompanyService companyService;
 
     public ManagerMenu(DbCompanyDAO companyDAO) {
-        this.companyDAO = companyDAO;
+
+        this.companyService = new CompanyService(companyDAO);
     }
     
     public void show() {
@@ -24,24 +26,12 @@ public class ManagerMenu {
 
             int choice = Keyboard.getInt();
             switch (choice) {
-                case 1 -> printCompanyList();
+                case 1 -> companyService.printCompanyList();
                 case 2 -> createCompany();
                 case 0 -> keepGoing = false;
                 default -> throw new IllegalStateException("Unexpected value: " + choice);
             }
        }
-    }
-
-    private List<Company> printCompanyList() {
-        List <Company> companies = companyDAO.findAll();
-        if (companies.isEmpty()) {
-            System.out.println("The company list is empty!");
-        } else {
-            System.out.println();
-            companies.forEach(company -> System.out.println(company.id() + ". " + company.name()));
-            System.out.println();
-        }
-        return companies;
     }
 
     public void createCompany() {
