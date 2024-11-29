@@ -28,6 +28,7 @@ public class DBClient {
         try (Connection connection = dataSource.getConnection();
              Statement statement = connection.createStatement()
         ) {
+            connection.setAutoCommit(true);
             statement.executeUpdate(str);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -40,6 +41,7 @@ public class DBClient {
         try (Connection connection = dataSource.getConnection();
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(query)) {
+            connection.setAutoCommit(true);
             while (resultSet.next()) {
                 int ID = resultSet.getInt("ID");
                 String name = resultSet.getString("NAME");
