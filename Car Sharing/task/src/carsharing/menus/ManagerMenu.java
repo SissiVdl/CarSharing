@@ -26,7 +26,7 @@ public class ManagerMenu {
 
             int choice = Keyboard.getInt();
             switch (choice) {
-                case 1 -> companyService.printCompanyList();
+                case 1 -> CompanyMenu.show(companyService.chooseCompany());
                 case 2 -> companyService.createCompany();
                 case 0 -> keepGoing = false;
                 default -> throw new IllegalStateException("Unexpected value: " + choice);
