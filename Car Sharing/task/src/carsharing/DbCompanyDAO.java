@@ -15,7 +15,6 @@ public class DbCompanyDAO implements CompanyDAO {
     public DbCompanyDAO() {
         dbClient= new DBClient();
         dbClient.run(CREATE_TABLE);
-        System.out.println("Table created");
     }
 
     public void add(Company company) {
