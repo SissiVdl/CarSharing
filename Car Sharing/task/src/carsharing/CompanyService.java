@@ -11,15 +11,29 @@ public class CompanyService {
         this.companyDAO = companyDAO;
     }
 
-    public void printCompanyList() {
+
+    public Company chooseCompany() {
+        System.out.println("Choose a company:");
         List<Company> companies = companyDAO.findAll();
+        Company company = null;
         if (companies.isEmpty()) {
             System.out.println("The company list is empty!");
         } else {
-            System.out.println();
-            companies.forEach(company -> System.out.println(company.id() + ". " + company.name()));
-            System.out.println();
+            companies.forEach(comp -> System.out.println(comp.id() + ". " + comp.name()));
+            int choice = Keyboard.getInt();
+            company = companyDAO.findById(choice);
         }
+        return company;
+    }
+
+    public Company getCompanyById(int id) {
+        Company company = companyDAO.findById(id);
+        if (company != null) {
+            System.out.println("You selected \"" + company.name() + "\"");
+        } else {
+            System.out.println("There is no company with this ID!");
+        }
+        return company;
     }
 
     public void createCompany() {

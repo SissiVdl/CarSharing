@@ -52,4 +52,21 @@ public class DBClient {
         }
         return companies;
     }
+
+    public Company selectForCompany(String query) {
+        Company company = null;
+        try (Connection connection = dataSource.getConnection();
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(query)) {
+            connection.setAutoCommit(true);
+            if (resultSet.next()) {
+                int ID = resultSet.getInt("ID");
+                String name = resultSet.getString("NAME");
+                company = new Company(ID, name);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return company;
+    }
 }

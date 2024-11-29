@@ -10,6 +10,7 @@ public class DbCompanyDAO implements CompanyDAO {
 
     private static final String INSERT_COMPANY = "INSERT INTO COMPANY (NAME) VALUES ('%s');";
     private static final String LIST_ALL_COMPANIES = "SELECT * FROM COMPANY;";
+    private static final String FIND_COMPANY_BY_ID = "SELECT * FROM COMPANY WHERE ID = %d;";
     private final DBClient dbClient;
 
     public DbCompanyDAO() {
@@ -22,7 +23,10 @@ public class DbCompanyDAO implements CompanyDAO {
     }
 
     public List<Company> findAll() {
-        List<Company> companies = dbClient.selectForCompanyList(LIST_ALL_COMPANIES);
-        return companies;
+        return dbClient.selectForCompanyList(LIST_ALL_COMPANIES);
+    }
+
+    public Company findById(int id) {
+        return dbClient.selectForCompany(String.format(FIND_COMPANY_BY_ID, id));
     }
 }
