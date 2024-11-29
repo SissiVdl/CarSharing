@@ -1,5 +1,6 @@
 package carsharing.menus;
 
+import carsharing.DbCarDAO;
 import carsharing.DbCompanyDAO;
 import carsharing.util.Keyboard;
 
@@ -7,12 +8,14 @@ import static java.lang.System.exit;
 
 public final class MainMenu {
 
-    private DbCompanyDAO companyDAO;
+    private final DbCompanyDAO companyDAO;
+    private final DbCarDAO carDAO;
     private final ManagerMenu managerMenu;
 
     public MainMenu() {
         companyDAO = new DbCompanyDAO();
-        managerMenu = new ManagerMenu(companyDAO);
+        carDAO = new DbCarDAO();
+        managerMenu = new ManagerMenu(companyDAO, carDAO);
     }
 
     public void show() {

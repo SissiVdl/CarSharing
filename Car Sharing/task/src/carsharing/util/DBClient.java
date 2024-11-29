@@ -1,5 +1,6 @@
 package carsharing.util;
 
+import carsharing.Car;
 import carsharing.Company;
 import carsharing.CompanyDAO;
 import org.h2.jdbcx.JdbcDataSource;
@@ -68,5 +69,23 @@ public class DBClient {
             e.printStackTrace();
         }
         return company;
+    }
+
+    public List<Car> selectForCarList(String query) {
+        List<Car> cars = new ArrayList<>();
+        try (Connection connection = dataSource.getConnection();
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(query)) {
+            connection.setAutoCommit(true);
+            while (resultSet.next()) {
+                int id = resultSet.getInt("ID");
+                String name = resultSet.getString("NAME");
+                int companyId = resultSet.getInt("COMPANY_ID");
+                cars.add(new Car(id, name, companyId));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return cars;
     }
 }

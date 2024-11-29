@@ -21,7 +21,7 @@ public class CompanyService {
         } else {
             companies.forEach(comp -> System.out.println(comp.id() + ". " + comp.name()));
             int choice = Keyboard.getInt();
-            company = companyDAO.findById(choice);
+            company = getCompanyById(choice);
         }
         return company;
     }
