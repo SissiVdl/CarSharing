@@ -24,7 +24,6 @@ public class DbCompanyDAO implements CompanyDAO {
 
     public List<Company> findAll() {
         List<Company> companies = dbClient.selectForCompanyList(LIST_ALL_COMPANIES);
-        companies.forEach(company -> System.out.println(company.id() + ". " + company.name()));
         return companies;
     }
 }

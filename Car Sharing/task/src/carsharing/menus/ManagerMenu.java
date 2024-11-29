@@ -37,7 +37,9 @@ public class ManagerMenu {
         if (companies.isEmpty()) {
             System.out.println("The company list is empty!");
         } else {
+            System.out.println();
             companies.forEach(company -> System.out.println(company.id() + ". " + company.name()));
+            System.out.println();
         }
         return companies;
     }
