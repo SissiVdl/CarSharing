@@ -1,6 +1,5 @@
 package carsharing;
 import carsharing.util.DBClient;
-import java.net.URL;
 import java.util.List;
 
 public class DbCompanyDAO implements CompanyDAO {
@@ -9,18 +8,18 @@ public class DbCompanyDAO implements CompanyDAO {
             "NAME VARCHAR(255) UNIQUE NOT NULL" +
             ");";
 
-    private static final String INSERT_COMPANY = "INSERT INTO COMPANY VALUES (%d, '%s');";
+    private static final String INSERT_COMPANY = "INSERT INTO COMPANY (NAME) VALUES ('%s');";
     private static final String LIST_ALL_COMPANIES = "SELECT * FROM COMPANY;";
-
-    private static final DBClient dbClient = new DBClient();
+    private final DBClient dbClient;
 
     public DbCompanyDAO() {
+        dbClient= new DBClient();
         dbClient.run(CREATE_TABLE);
         System.out.println("Table created");
     }
 
     public void add(Company company) {
-        dbClient.run(String.format(INSERT_COMPANY, company.id(), company.name()));
+        dbClient.run(String.format(INSERT_COMPANY, company.name()));
     }
 
     public List<Company> findAll() {

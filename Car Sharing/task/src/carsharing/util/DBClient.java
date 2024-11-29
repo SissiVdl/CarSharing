@@ -13,15 +13,17 @@ import java.util.List;
 
 public class DBClient {
 
-    private static DataSource dataSource;
+    private final DataSource dataSource;
     private static final String CONNECTION_URL = "jdbc:h2:file:./src/carsharing/db/carsharing";
 
+    // DB client has a data source
     public DBClient() {
         JdbcDataSource dataSource = new JdbcDataSource();
         dataSource.setUrl(CONNECTION_URL);
         this.dataSource = dataSource;
     }
 
+    // makes connection and executes SQL statements
     public void run(String str) {
         try (Connection connection = dataSource.getConnection();
              Statement statement = connection.createStatement()
@@ -32,6 +34,7 @@ public class DBClient {
         }
     }
 
+    // makes connection, executes SQL, processes resultset to returns a list of companies
     public List<Company> selectForCompanyList(String query) {
         List<Company> companies = new ArrayList<>();
         try (Connection connection = dataSource.getConnection();
