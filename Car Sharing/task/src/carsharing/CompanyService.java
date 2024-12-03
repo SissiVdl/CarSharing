@@ -19,6 +19,18 @@ public class CompanyService {
         return companyDAO.findById(id);
     }
 
+    public List<Company> displayCompanies() {
+        List<Company> companies = getAllCompanies();
+        if (companies.isEmpty()) {
+            System.out.println("The company list is empty!");
+        } else {
+            System.out.println("Choose a company:");
+            companies.forEach(comp -> System.out.println(comp.id() + ". " + comp.name()));
+            System.out.println("0. Back");
+        }
+        return companies;
+    }
+
     public void createCompany() {
         System.out.println("Enter the company name:");
         String name = Keyboard.getNextLine();

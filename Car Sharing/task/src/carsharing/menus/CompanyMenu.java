@@ -2,17 +2,22 @@ package carsharing.menus;
 
 import carsharing.CarService;
 import carsharing.Company;
+import carsharing.CompanyService;
 import carsharing.util.Keyboard;
 
+import java.util.List;
+
 public class CompanyMenu {
-
     private final CarService carService;
+    private final CompanyService companyService;
 
-    public CompanyMenu(CarService carService) {
+    public CompanyMenu(CarService carService, CompanyService companyService) {
         this.carService = carService;
+        this.companyService = companyService;
+    }
     }
 
-    public void show(Company company) {
+    private void showCompanyOptions(Company company) {
         boolean keepGoing = true;
 
         while (keepGoing) {
