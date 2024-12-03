@@ -15,6 +15,26 @@ public class CompanyMenu {
         this.carService = carService;
         this.companyService = companyService;
     }
+
+    public void show() {
+        List<Company> companies = companyService.displayCompanies();
+        if (companies.isEmpty()) {
+            return;
+        }
+        handeChoice();
+    }
+
+    private void handeChoice() {
+        int choice = Keyboard.getInt();
+        if (choice == 0) {
+            return;
+        }
+        Company company = companyService.getCompanyById(choice);
+        if (company != null) {
+            showCompanyOptions(company);
+        } else {
+            System.out.println("There is no company with this ID!");
+        }
     }
 
     private void showCompanyOptions(Company company) {

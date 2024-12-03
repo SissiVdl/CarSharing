@@ -28,39 +28,21 @@ public class ManagerMenu {
             System.out.println("2. Create a company");
             System.out.println("0. Back");
 
-            int choice = Keyboard.getInt();
-            switch (choice) {
-                case 1 -> showCompanyList();
-                case 2 -> companyService.createCompany();
-                case 0 -> {
-                    keepGoing = false;
-                    mainMenu.show();
-                }
-                default -> throw new IllegalStateException("Unexpected value: " + choice);
-            }
+            keepGoing = handleChoice();
         }
     }
 
-    private void showCompanyList() {
-        List<Company> companies = companyService.getAllCompanies();
-        if (companies.isEmpty()) {
-            System.out.println("The company list is empty!");
-        } else {
-            System.out.println("Choose a company:");
-            companies.forEach(comp -> System.out.println(comp.id() + ". " + comp.name()));
-            System.out.println("0. Back");
-
-            int choice = Keyboard.getInt();
-            if (choice == 0) {
-                return;
+    private boolean handleChoice() {
+        int choice = Keyboard.getInt();
+        switch (choice) {
+            case 1 -> new CompanyMenu(carService, companyService).show();
+            case 2 -> companyService.createCompany();
+            case 0 -> {
+                mainMenu.show();
+                return false;
             }
-
-            Company company = companyService.getCompanyById(choice);
-            if (company != null) {
-                new CompanyMenu(carService).show(company);
-            } else {
-                System.out.println("There is no company with this ID!");
-            }
+            default -> throw new IllegalStateException("Unexpected value: " + choice);
         }
+        return true;
     }
 }
