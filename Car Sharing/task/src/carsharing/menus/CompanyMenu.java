@@ -1,8 +1,8 @@
 package carsharing.menus;
 
-import carsharing.CarService;
-import carsharing.Company;
-import carsharing.CompanyService;
+import carsharing.services.CarService;
+import carsharing.domain.Company;
+import carsharing.services.CompanyService;
 import carsharing.util.Keyboard;
 
 import java.util.List;

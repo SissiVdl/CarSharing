@@ -1,5 +1,8 @@
-package carsharing;
+package carsharing.services;
 
+import carsharing.DAOImplementations.DbCarDAO;
+import carsharing.domain.Car;
+import carsharing.domain.Company;
 import carsharing.util.Keyboard;
 
 import java.util.List;

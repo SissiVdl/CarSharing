@@ -1,6 +1,10 @@
 package carsharing;
 
+import carsharing.DAOImplementations.DbCarDAO;
+import carsharing.DAOImplementations.DbCompanyDAO;
 import carsharing.menus.MainMenu;
+import carsharing.services.CarService;
+import carsharing.services.CompanyService;
 
 public class Main {
 

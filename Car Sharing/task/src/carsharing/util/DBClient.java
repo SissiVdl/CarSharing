@@ -1,8 +1,7 @@
 package carsharing.util;
 
-import carsharing.Car;
-import carsharing.Company;
-import carsharing.CompanyDAO;
+import carsharing.domain.Car;
+import carsharing.domain.Company;
 import org.h2.jdbcx.JdbcDataSource;
 import javax.sql.DataSource;
 import java.sql.Connection;

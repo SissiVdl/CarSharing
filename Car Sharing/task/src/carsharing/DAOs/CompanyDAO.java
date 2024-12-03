@@ -1,4 +1,6 @@
-package carsharing;
+package carsharing.DAOs;
+
+import carsharing.domain.Company;
 
 import java.util.List;
 

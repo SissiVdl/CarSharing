@@ -1,4 +1,6 @@
-package carsharing;
+package carsharing.DAOImplementations;
+import carsharing.DAOs.CompanyDAO;
+import carsharing.domain.Company;
 import carsharing.util.DBClient;
 import java.util.List;
 
