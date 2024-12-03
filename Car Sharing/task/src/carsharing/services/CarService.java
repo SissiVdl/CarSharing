@@ -1,6 +1,7 @@
 package carsharing.services;
 
 import carsharing.DAOImplementations.DbCarDAO;
+import carsharing.DAOs.CarDAO;
 import carsharing.domain.Car;
 import carsharing.domain.Company;
 import carsharing.util.Keyboard;
@@ -8,9 +9,9 @@ import carsharing.util.Keyboard;
 import java.util.List;
 
 public class CarService {
-    private final DbCarDAO carDAO;
+    private final CarDAO carDAO;
 
-    public CarService(DbCarDAO carDAO) {
+    public CarService(CarDAO carDAO) {
         this.carDAO = carDAO;
     }
 

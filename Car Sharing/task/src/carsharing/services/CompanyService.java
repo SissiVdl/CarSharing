@@ -1,15 +1,16 @@
 package carsharing.services;
 
 import carsharing.DAOImplementations.DbCompanyDAO;
+import carsharing.DAOs.CompanyDAO;
 import carsharing.domain.Company;
 import carsharing.util.Keyboard;
 
 import java.util.List;
 
 public class CompanyService {
-    private final DbCompanyDAO companyDAO;
+    private final CompanyDAO companyDAO;
 
-    public CompanyService(DbCompanyDAO companyDAO) {
+    public CompanyService(CompanyDAO companyDAO) {
         this.companyDAO = companyDAO;
     }
 
