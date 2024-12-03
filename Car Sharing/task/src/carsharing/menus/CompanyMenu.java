@@ -21,10 +21,10 @@ public class CompanyMenu {
         if (companies.isEmpty()) {
             return;
         }
-        handeChoice();
+        handleChoice();
     }
 
-    private void handeChoice() {
+    private void handleChoice() {
         int choice = Keyboard.getInt();
         if (choice == 0) {
             return;
