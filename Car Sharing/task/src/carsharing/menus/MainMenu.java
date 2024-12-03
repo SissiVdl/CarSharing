@@ -20,6 +20,8 @@ public final class MainMenu {
 
     public void show() {
         System.out.println("1. Log in as a manager");
+        System.out.println("2. Log in as a customer");
+        System.out.println("3. Create a customer");
         System.out.println("0. Exit");
 
         handleChoice();
@@ -29,6 +31,8 @@ public final class MainMenu {
         int choice = Keyboard.getInt();
         switch (choice) {
             case 1 -> managerMenu.show();
+            case 2 -> System.out.println("Customer");
+            case 3 -> System.out.println("Create a customer");
             case 0 -> stopProgram();
             default -> throw new IllegalStateException("Unexpected value: " + choice);
         }
