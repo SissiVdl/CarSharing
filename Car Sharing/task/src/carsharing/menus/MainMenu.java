@@ -1,7 +1,5 @@
 package carsharing.menus;
 
-import carsharing.DbCarDAO;
-import carsharing.DbCompanyDAO;
 import carsharing.CarService;
 import carsharing.CompanyService;
 import carsharing.util.Keyboard;
@@ -14,12 +12,10 @@ public final class MainMenu {
     private final CarService carService;
     private final ManagerMenu managerMenu;
 
-    public MainMenu() {
-        DbCompanyDAO companyDAO = new DbCompanyDAO();
-        DbCarDAO carDAO = new DbCarDAO();
-        companyService = new CompanyService(companyDAO);
-        carService = new CarService(carDAO);
-        managerMenu = new ManagerMenu(companyService, carService);
+    public MainMenu(CompanyService companyService, CarService carService) {
+        this.companyService = companyService;
+        this.carService = carService;
+        this.managerMenu = new ManagerMenu(companyService, carService, this);
     }
 
     public void show() {

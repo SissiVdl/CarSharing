@@ -12,9 +12,12 @@ public class ManagerMenu {
     private final CompanyService companyService;
     private final CarService carService;
 
-    public ManagerMenu(CompanyService companyService, CarService carService) {
+    private final MainMenu mainMenu;
+
+    public ManagerMenu(CompanyService companyService, CarService carService, MainMenu mainMenu) {
         this.companyService = companyService;
         this.carService = carService;
+        this.mainMenu = mainMenu;
     }
 
     public void show() {
@@ -29,7 +32,10 @@ public class ManagerMenu {
             switch (choice) {
                 case 1 -> showCompanyList();
                 case 2 -> companyService.createCompany();
-                case 0 -> keepGoing = false;
+                case 0 -> {
+                    keepGoing = false;
+                    mainMenu.show();
+                }
                 default -> throw new IllegalStateException("Unexpected value: " + choice);
             }
         }

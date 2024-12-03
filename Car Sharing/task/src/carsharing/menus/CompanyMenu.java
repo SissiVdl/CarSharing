@@ -16,7 +16,7 @@ public class CompanyMenu {
         boolean keepGoing = true;
 
         while (keepGoing) {
-            System.out.println("'"+ company.name() + "' company");
+            System.out.println("'" + company.name() + "' company");
             System.out.println("1. Car list");
             System.out.println("2. Create a car");
             System.out.println("0. Back");

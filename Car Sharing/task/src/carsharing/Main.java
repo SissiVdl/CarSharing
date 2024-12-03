@@ -6,9 +6,13 @@ public class Main {
 
     public static void main(String[] args) {
 
-        MainMenu menu = new MainMenu();
-        while (true) {
-            menu.show();
-        }
+        DbCompanyDAO companyDAO = new DbCompanyDAO();
+        DbCarDAO carDAO = new DbCarDAO();
+
+        CompanyService companyService = new CompanyService(companyDAO);
+        CarService carService = new CarService(carDAO);
+
+        MainMenu mainMenu = new MainMenu(companyService, carService);
+        mainMenu.show();
     }
 }
