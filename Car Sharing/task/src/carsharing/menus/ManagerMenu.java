@@ -1,6 +1,8 @@
 package carsharing.menus;
 
-import carsharing.*;
+import carsharing.CarService;
+import carsharing.Company;
+import carsharing.CompanyService;
 import carsharing.util.Keyboard;
 
 import java.util.List;
@@ -10,9 +12,9 @@ public class ManagerMenu {
     private final CompanyService companyService;
     private final CarService carService;
 
-    public ManagerMenu(DbCompanyDAO companyDAO, DbCarDAO carDAO) {
-        this.companyService = new CompanyService(companyDAO);
-        this.carService = new CarService(carDAO);
+    public ManagerMenu(CompanyService companyService, CarService carService) {
+        this.companyService = companyService;
+        this.carService = carService;
     }
 
     public void show() {
@@ -41,11 +43,12 @@ public class ManagerMenu {
             System.out.println("Choose a company:");
             companies.forEach(comp -> System.out.println(comp.id() + ". " + comp.name()));
             System.out.println("0. Back");
-            int choice = Keyboard.getInt();
 
+            int choice = Keyboard.getInt();
             if (choice == 0) {
                 return;
             }
+
             Company company = companyService.getCompanyById(choice);
             if (company != null) {
                 new CompanyMenu(carService).show(company);
