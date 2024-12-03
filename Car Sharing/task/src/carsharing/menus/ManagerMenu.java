@@ -14,7 +14,7 @@ public class ManagerMenu {
         this.companyService = new CompanyService(companyDAO);
         this.carService = new CarService(carDAO);
     }
-    
+
     public void show() {
         boolean keepGoing = true;
 
@@ -25,11 +25,28 @@ public class ManagerMenu {
 
             int choice = Keyboard.getInt();
             switch (choice) {
-                case 1 -> new CompanyMenu(carService).show(companyService.chooseCompany());
+                case 1 -> showCompanyList();
                 case 2 -> companyService.createCompany();
                 case 0 -> keepGoing = false;
                 default -> throw new IllegalStateException("Unexpected value: " + choice);
             }
-       }
+        }
+    }
+
+    private void showCompanyList() {
+        List<Company> companies = companyService.getAllCompanies();
+        if (companies.isEmpty()) {
+            System.out.println("The company list is empty!");
+        } else {
+            System.out.println("Choose a company:");
+            companies.forEach(comp -> System.out.println(comp.id() + ". " + comp.name()));
+            int choice = Keyboard.getInt();
+            Company company = companyService.getCompanyById(choice);
+            if (company != null) {
+                new CompanyMenu(carService).show(company);
+            } else {
+                System.out.println("There is no company with this ID!");
+            }
+        }
     }
 }

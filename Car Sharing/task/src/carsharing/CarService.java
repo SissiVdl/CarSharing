@@ -23,5 +23,6 @@ public class CarService {
     public void createCar(Company company) {
         String name = Keyboard.getNextLine("Enter the car name:");
         carDAO.add(new Car(0,name, company.id()));
+        System.out.println("The car was added!");
     }
 }
