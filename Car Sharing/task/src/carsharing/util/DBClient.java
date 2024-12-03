@@ -2,6 +2,7 @@ package carsharing.util;
 
 import carsharing.domain.Car;
 import carsharing.domain.Company;
+import carsharing.domain.Customer;
 import org.h2.jdbcx.JdbcDataSource;
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -86,5 +87,41 @@ public class DBClient {
             e.printStackTrace();
         }
         return cars;
+    }
+
+    public List selectForCustomerList(String query) {
+        List<Customer> customers = new ArrayList<>();
+        try (Connection connection = dataSource.getConnection();
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(query)) {
+            connection.setAutoCommit(true);
+            while (resultSet.next()) {
+                int id = resultSet.getInt("ID");
+                String name = resultSet.getString("NAME");
+                int rentedCarId = resultSet.getInt("RENTED_CAR_ID");
+                customers.add(new Customer(id, name, rentedCarId));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return customers;
+    }
+
+    public Customer selectForCustomer(String format) {
+        Customer customer = null;
+        try (Connection connection = dataSource.getConnection();
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(format)) {
+            connection.setAutoCommit(true);
+            if (resultSet.next()) {
+                int id = resultSet.getInt("ID");
+                String name = resultSet.getString("NAME");
+                int rentedCarId = resultSet.getInt("RENTED_CAR_ID");
+                customer = new Customer(id, name, rentedCarId);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return customer;
     }
 }

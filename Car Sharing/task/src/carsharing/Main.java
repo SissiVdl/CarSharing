@@ -17,9 +17,11 @@ public class Main {
 
         CompanyDAO companyDAO = new DbCompanyDAO();
         CarDAO carDAO = new DbCarDAO();
+        CustomerDAO customerDAO = new DbCustomerDAO();
 
         CompanyService companyService = new CompanyService(companyDAO);
         CarService carService = new CarService(carDAO);
+        CustomerService customerService = new CustomerService(customerDAO);
 
         MainMenu mainMenu = new MainMenu(companyService, carService);
         mainMenu.show();
