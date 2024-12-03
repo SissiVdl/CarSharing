@@ -16,7 +16,11 @@ public class CarService {
         if (cars.isEmpty()) {
             System.out.println("The car list is empty!");
         } else {
-            cars.forEach(car -> System.out.println(car.id() + ". " + car.name()));
+            final int[] counter = {1};
+            cars.forEach(car -> {
+                System.out.println(counter[0] + ". " + car.name());
+                counter[0]++;
+            });
         }
     }
 

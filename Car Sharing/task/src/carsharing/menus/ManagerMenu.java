@@ -40,7 +40,12 @@ public class ManagerMenu {
         } else {
             System.out.println("Choose a company:");
             companies.forEach(comp -> System.out.println(comp.id() + ". " + comp.name()));
+            System.out.println("0. Back");
             int choice = Keyboard.getInt();
+
+            if (choice == 0) {
+                return;
+            }
             Company company = companyService.getCompanyById(choice);
             if (company != null) {
                 new CompanyMenu(carService).show(company);
