@@ -14,11 +14,14 @@ public final class MainMenu {
     private final CustomerService customerService;
     private final ManagerMenu managerMenu;
 
+    private final CustomerMenu customerMenu;
+
     public MainMenu(CompanyService companyService, CarService carService, CustomerService customerService) {
         this.companyService = companyService;
         this.carService = carService;
         this.customerService = customerService;
         this.managerMenu = new ManagerMenu(companyService, carService, this);
+        this.customerMenu = new CustomerMenu(customerService, this);
     }
 
     public void show() {
@@ -34,7 +37,7 @@ public final class MainMenu {
         int choice = Keyboard.getInt();
         switch (choice) {
             case 1 -> managerMenu.show();
-            case 2 -> System.out.println("Log in as a customer");
+            case 2 -> customerMenu.show();
             case 3 -> customerService.createCustomer();
             case 0 -> stopProgram();
             default -> throw new IllegalStateException("Unexpected value: " + choice);
