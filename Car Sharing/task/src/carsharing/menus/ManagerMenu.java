@@ -1,8 +1,11 @@
 package carsharing.menus;
 
+import carsharing.domain.Company;
 import carsharing.services.CarService;
 import carsharing.services.CompanyService;
 import carsharing.util.Keyboard;
+
+import java.util.List;
 
 public class ManagerMenu {
 

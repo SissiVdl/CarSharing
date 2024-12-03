@@ -13,15 +13,16 @@ public final class MainMenu {
     private final CarService carService;
     private final CustomerService customerService;
     private final ManagerMenu managerMenu;
-
     private final CustomerMenu customerMenu;
+    private final CompanyMenu companyMenu;
 
     public MainMenu(CompanyService companyService, CarService carService, CustomerService customerService) {
         this.companyService = companyService;
         this.carService = carService;
         this.customerService = customerService;
+        this.companyMenu = new CompanyMenu(carService, companyService);
         this.managerMenu = new ManagerMenu(companyService, carService, this);
-        this.customerMenu = new CustomerMenu(customerService, this);
+        this.customerMenu = new CustomerMenu(customerService,this, companyMenu);
     }
 
     public void show() {

@@ -17,11 +17,23 @@ public class CompanyMenu {
     }
 
     public void show() {
-        List<Company> companies = companyService.displayCompanies();
+        List<Company> companies = displayCompanies();
         if (companies.isEmpty()) {
             return;
         }
         handleChoice();
+    }
+
+    public List<Company> displayCompanies() {
+        List<Company> companies = companyService.getAllCompanies();
+        if (companies.isEmpty()) {
+            System.out.println("The company list is empty!");
+        } else {
+            System.out.println("Choose a company:");
+            companies.forEach(comp -> System.out.println(comp.id() + ". " + comp.name()));
+            System.out.println("0. Back");
+        }
+        return companies;
     }
 
     private void handleChoice() {
