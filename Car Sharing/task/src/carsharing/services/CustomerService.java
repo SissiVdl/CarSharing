@@ -2,6 +2,7 @@ package carsharing.services;
 
 import carsharing.DAOImplementations.DbCustomerDAO;
 import carsharing.DAOs.CustomerDAO;
+import carsharing.domain.Customer;
 
 public class CustomerService {
 
@@ -9,5 +10,13 @@ public class CustomerService {
 
     public CustomerService(CustomerDAO customerDAO) {
         this.customerDAO = customerDAO;
+    }
+
+    public void createCustomer() {
+        System.out.println("Enter the customer name:");
+        String name = carsharing.util.Keyboard.getNextLine();
+        Customer customer = new Customer(null, name, null);
+        customerDAO.add(customer);
+        System.out.println("The customer was created!");
     }
 }

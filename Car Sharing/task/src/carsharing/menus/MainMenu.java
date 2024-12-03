@@ -2,6 +2,7 @@ package carsharing.menus;
 
 import carsharing.services.CarService;
 import carsharing.services.CompanyService;
+import carsharing.services.CustomerService;
 import carsharing.util.Keyboard;
 
 import static java.lang.System.exit;
@@ -10,11 +11,13 @@ public final class MainMenu {
 
     private final CompanyService companyService;
     private final CarService carService;
+    private final CustomerService customerService;
     private final ManagerMenu managerMenu;
 
-    public MainMenu(CompanyService companyService, CarService carService) {
+    public MainMenu(CompanyService companyService, CarService carService, CustomerService customerService) {
         this.companyService = companyService;
         this.carService = carService;
+        this.customerService = customerService;
         this.managerMenu = new ManagerMenu(companyService, carService, this);
     }
 
@@ -31,8 +34,8 @@ public final class MainMenu {
         int choice = Keyboard.getInt();
         switch (choice) {
             case 1 -> managerMenu.show();
-            case 2 -> System.out.println("Customer");
-            case 3 -> System.out.println("Create a customer");
+            case 2 -> System.out.println("Log in as a customer");
+            case 3 -> customerService.createCustomer();
             case 0 -> stopProgram();
             default -> throw new IllegalStateException("Unexpected value: " + choice);
         }

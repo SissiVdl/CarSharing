@@ -23,7 +23,7 @@ public class Main {
         CarService carService = new CarService(carDAO);
         CustomerService customerService = new CustomerService(customerDAO);
 
-        MainMenu mainMenu = new MainMenu(companyService, carService);
+        MainMenu mainMenu = new MainMenu(companyService, carService, customerService);
         mainMenu.show();
     }
 }

@@ -1,4 +1,13 @@
 package carsharing.domain;
 
-public record Car(int id, String name, int companyId) {
+public record Car(Integer id, String name, int companyId) {
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", companyId=" + companyId +
+                '}';
+    }
 }

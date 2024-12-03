@@ -37,7 +37,7 @@ public class CompanyService {
     public void createCompany() {
         System.out.println("Enter the company name:");
         String name = Keyboard.getNextLine();
-        Company company = new Company(0, name);
+        Company company = new Company(null, name);
         companyDAO.add(company);
         System.out.println("The company was created!");
     }
